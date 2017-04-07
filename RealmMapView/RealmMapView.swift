@@ -19,8 +19,8 @@ public typealias Annotation = ABFAnnotation
 public typealias AnnotationType = ABFAnnotationType
 
 /**
-The RealmMapView class creates an interface object that inherits MKMapView and manages fetching and displaying annotations for a Realm Swift object class that contains coordinate data.
-*/
+ The RealmMapView class creates an interface object that inherits MKMapView and manages fetching and displaying annotations for a Realm Swift object class that contains coordinate data.
+ */
 open class RealmMapView: MKMapView {
     // MARK: Properties
     
@@ -140,7 +140,6 @@ open class RealmMapView: MKMapView {
             if let fetchPred = fetchRequest.predicate {
                 predicates.append(fetchPred)
             }
-            
             if !predicates.isEmpty {
                 let compPred = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
                 fetchRequest.predicate = compPred
@@ -274,9 +273,9 @@ open class RealmMapView: MKMapView {
         
         UIView.animate(withDuration: 0.6, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options: UIViewAnimationOptions(), animations: { () -> Void in
             
-                view.transform = CGAffineTransform.identity.scaledBy(x: 1.0, y: 1.0)
+            view.transform = CGAffineTransform.identity.scaledBy(x: 1.0, y: 1.0)
             
-            }, completion: nil)
+        }, completion: nil)
     }
     
     fileprivate func coordinateRegion(_ safeObjects: [ABFLocationSafeRealmObject]) -> MKCoordinateRegion {
@@ -300,10 +299,10 @@ open class RealmMapView: MKMapView {
 }
 
 /**
-Delegate proxy that allows the controller to trigger auto refresh and then rebroadcast to main delegate.
-
-:nodoc:
-*/
+ Delegate proxy that allows the controller to trigger auto refresh and then rebroadcast to main delegate.
+ 
+ :nodoc:
+ */
 extension RealmMapView: MKMapViewDelegate {
     public func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
         self.externalDelegate?.mapView?(mapView, regionWillChangeAnimated: animated)
@@ -421,6 +420,6 @@ extension RealmMapView: MKMapViewDelegate {
 /// Extension to ABFLocationSafeRealmObject to convert back to original Object type
 extension LocationSafeRealmObject {
     public func toObject<T>(_ type: T.Type) -> T {
-        return unsafeBitCast(self.rlmObject(), to: T.self)
+        return unsafeBitCast(self.rlmObject() as! RLMObjectBase, to: T.self)
     }
 }
