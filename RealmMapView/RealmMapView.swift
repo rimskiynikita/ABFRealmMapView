@@ -348,7 +348,7 @@ extension RealmMapView: MKMapViewDelegate {
             
             if annotationView == nil {
                 annotationView = ABFClusterAnnotationView(annotation: fetchedAnnotation, reuseIdentifier: ABFAnnotationViewReuseId)
-                
+                annotationView!.color = UIColor(red: 92/255, green: 67/255, blue: 150/255, alpha: 1.0)
                 annotationView!.canShowCallout = self.canShowCallout
             }
             
